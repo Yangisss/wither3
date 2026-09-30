@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Loot Multiplier - страница мода в меню "Настройки -> Моды".
+	Файл кладётся в <игра>\bin\config\r4game\user_config_matrix\pc\
+	и обязательно прописывается в dx11filelist.txt и dx12filelist.txt
+	(строкой  modLootMultiplier.xml;  ), иначе меню не появится.
+
+	displayName="Mods.<Имя>" - именно так мод попадает в раздел MODS.
+	Формат слайдера: displayType="SLIDER;ОТ;ДО;КОЛИЧЕСТВО_ЗНАЧЕНИЙ"
+-->
+<UserConfig>
+	<Group id="modLootMultiplier" displayName="Mods.Loot Multiplier" tags="nonLocalized">
+		<VisibleVars>
+			<Var id="LMEnabled" displayName="Включить мод" displayType="TOGGLE" tags="nonLocalized"/>
+
+			<Var id="LMMultiplier" displayName="Общий множитель ресурсов (x)" displayType="SLIDER;1;20;20" tags="nonLocalized"/>
+
+			<Var id="LMUsePerSource" displayName="Разные множители по источникам" displayType="TOGGLE" tags="nonLocalized"/>
+			<Var id="LMMultContainers" displayName="Контейнеры: сундуки, бочки, ящики (x)" displayType="SLIDER;1;20;20" tags="nonLocalized"/>
+			<Var id="LMMultCorpses" displayName="Трупы: монстры, звери, люди (x)" displayType="SLIDER;1;20;20" tags="nonLocalized"/>
+			<Var id="LMMultHerbs" displayName="Травы и грибы (x)" displayType="SLIDER;1;20;20" tags="nonLocalized"/>
+
+			<Var id="LMUseMoney" displayName="Отдельный множитель для крон" displayType="TOGGLE" tags="nonLocalized"/>
+			<Var id="LMMultMoney" displayName="Кроны (x)" displayType="SLIDER;1;20;20" tags="nonLocalized"/>
+
+			<Var id="LMCap" displayName="Лимит предметов за раз (0 = без лимита)" displayType="SLIDER;0;500;51" tags="nonLocalized"/>
+
+			<Var id="LMQuestContainers" displayName="Трогать квестовые контейнеры" displayType="TOGGLE" tags="nonLocalized"/>
+			<Var id="LMNotify" displayName="Показывать сообщение при получении" displayType="TOGGLE" tags="nonLocalized"/>
+			<Var id="LMDebug" displayName="Писать подробности в лог (отладка)" displayType="TOGGLE" tags="nonLocalized"/>
+		</VisibleVars>
+	</Group>
+</UserConfig>
