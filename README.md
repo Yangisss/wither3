@@ -13,6 +13,33 @@
 
 ---
 
+## Быстрый старт (3 минуты, ничего больше качать не надо)
+
+1. Скачай `dist/LootMultiplier-install.zip` (это готовый архив в структуре игры).
+2. Распакуй его **в папку с игрой** — там, где лежит `witcher3.exe`
+   (Windows предложит «заменить/объединить папки» — соглашайся).
+   Архив сам разложит всё по местам:
+   ```
+   <игра>\mods\modLootMultiplier\content\scripts\local\*.ws
+   <игра>\bin\config\r4game\user_config_matrix\pc\modLootMultiplier.xml
+   ```
+3. Остаётся один шаг руками (иначе меню не появится — особенность Next-Gen/Remastered):
+   открой блокнотом файл `<игра>\bin\config\r4game\user_config_matrix\pc\dx12filelist.txt`,
+   в самый конец добавь новую строку
+
+   ```
+   modLootMultiplier.xml;
+   ```
+
+   и сохрани. Играешь в DX11 — то же самое сделай в `dx11filelist.txt`
+   (можно прописать в оба файла).
+4. Запускай игру: **Настройки → Моды → Loot Multiplier**.
+
+Никаких зависимостей, Script Merger, REDkit и прочего не требуется — мод состоит
+из двух текстовых файлов скрипта и одного XML меню.
+
+---
+
 ## Как это работает
 
 Вся передача предметов между инвентарями в игре идёт через одну функцию:
@@ -56,7 +83,44 @@ powershell -ExecutionPolicy Bypass -File tools\install.ps1
 powershell -ExecutionPolicy Bypass -File tools\install.ps1 -GamePath "D:\Games\The Witcher 3"
 ```
 
+<<<<<<< HEAD
 ### Вариант 2 — руками
+=======
+### Вариант 2 — руками (Steam-версия)
+
+Точный путь к игре: **Библиотека Steam → ПКМ на «The Witcher 3: Wild Hunt» →
+Свойства → Установленные файлы → Обзор локальных файлов**. Откроется папка, где
+лежат `bin`, `content`, `dlc` и `witcher3.exe`. Обычно это:
+
+```
+C:\Program Files (x86)\Steam\steamapps\common\The Witcher 3\
+D:\SteamLibrary\steamapps\common\The Witcher 3\
+```
+
+Дальше (ниже `<игра>` = эта папка):
+
+1. Папку `modLootMultiplier` из репозитория скопировать в `<игра>\mods\`
+   (папки `mods` может не быть — создай). Итог:
+   `<игра>\mods\modLootMultiplier\content\scripts\local\lootMultiplier.ws`
+2. Файл `modLootMultiplier.xml` (лежит в `bin\config\r4game\user_config_matrix\pc\`)
+   скопировать в `<игра>\bin\config\r4game\user_config_matrix\pc\`.
+3. В этой же папке открыть блокнотом `dx12filelist.txt`, в самый конец добавить
+   строку `modLootMultiplier.xml;` и сохранить. Играешь в DX11 — то же самое
+   в `dx11filelist.txt` (можно прописать в оба файла, хуже не будет).
+
+Нюансы именно Steam-версии:
+
+- Папка мода обязана начинаться с `mod` (`modLootMultiplier`), иначе игра её
+  проигнорирует.
+- Моды, на которые ты подписан в мастерской Steam, лежат **не** в `<игра>\mods`,
+  а в `...\steamapps\workshop\content\292030\` — они этому моду не мешают, но и
+  Script Merger их не видит.
+- После «Проверить целостность файлов игры» Steam может вернуть оригинальные
+  `dx11filelist.txt` / `dx12filelist.txt` — если меню пропало, просто заново
+  добавь строку из шага 3.
+
+### Вариант 3 — руками (GOG / Epic, то же самое)
+>>>>>>> 913562b (README: ручная установка для Steam-версии + публикация в мастерскую)
 
 1. Папку `modLootMultiplier` целиком скопировать в `<игра>\mods\`
    (должно получиться `<игра>\mods\modLootMultiplier\content\scripts\local\*.ws`).
@@ -144,6 +208,29 @@ lm_status()
 
 ---
 
+<<<<<<< HEAD
+=======
+## Публикация в мастерскую Steam (если хочешь выложить мод)
+
+Для «Ведьмака 3» прямой загрузки через клиент Steam нет — мод публикуется через
+**The Witcher 3 REDkit** (бесплатный редактор в Steam): открываешь проект →
+вкладка **Publish** → *Save and publish mod project* → заполняешь имя, версию,
+описание и превью → в конце жмёшь **Publish to Steam Workshop**
+(там же есть *Export zip package* — готовый архив для Nexus Mods, и
+*Install project* — установка себе в игру).
+
+Два момента, если пойдёшь этим путём:
+
+- Мастерская ставит моды в `...\steamapps\workshop\content\292030\`, и файл меню
+  `modLootMultiplier.xml` (он живёт в `bin\config\...`) мастерская не разложит —
+  у подписчиков страницы «Настройки → Моды» не будет. Для мастерской лучше
+  собрать пресеты (×2 / ×3 / ×5 / ×10) отдельными вариантами мода.
+- Наш мод — это loose-скрипты. REDkit при публикации создаст `precompiled.rsblob`,
+  так что в мастерской он будет работать и без `.ws` в открытом виде.
+
+---
+
+>>>>>>> 913562b (README: ручная установка для Steam-версии + публикация в мастерскую)
 ## Удаление
 
 ```powershell
